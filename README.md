@@ -1,9 +1,32 @@
-## Nonparametric Spatio-Temporal Hawkes (Lightning)
+# Nonparametric Spatio-Temporal Hawkes Modeling of Lightning Events
 
-This repo contains code to fit a **nonparametric spatio-temporal Hawkes process** (ETAS-type) to lightning events, compute **super-thinning residuals**, and evaluate **goodness-of-fit** with the spatio-temporal paired correlation function (PCF).
+This repository contains R code for detecting lightning-event clusters, fitting a nonparametric spatio-temporal Hawkes model, and evaluating model fit with super-thinning residuals and related summaries.
 
-The code is designed to be **reproducible and modular**:
+The codebase is organized around a simple workflow:
 
-* `fit_nonpar_sthawkes.R` fits the model for each dataset window via an EM-style routine with step-function kernels.
-* `super_thinning.R` computes super-thinning residuals and the residual PCF.
-* `summaries_and_plots.R` makes publication-ready figures and quick diagnostics.
+1. detect lightning-event windows from raw lightning data,
+2. compare or visualize alternative event definitions,
+3. fit a nonparametric spatio-temporal Hawkes model to each event window,
+4. compute residual diagnostics and summary plots.
+
+---
+
+## Repository structure
+
+```text
+st-hawkes-lightning/
+├─ R/
+│  ├─ preprocessing/
+│  │  └─ detect_clusters_by_threshold.R
+│  ├─ EDA/
+│  │  ├─ compare_thresholds.R
+│  │  ├─ run_stdbscan.R
+│  │  └─ summarize_clusters.R
+│  ├─ methods/
+│  │  ├─ fit_princurve.R
+│  │  ├─ run_hawkes_by_year.R
+│  │  ├─ run_hawkes_year_threshold_grid.R
+│  │  ├─ super_thinning.R
+│  │  └─ summaries_and_plots.R
+├─ plots/
+└─ README.md
